@@ -1,0 +1,214 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: #4361ee;
+    --primary-dark: #3a56d4;
+    --secondary: #7209b7;
+    --success: #4cc9f0;
+    --danger: #f72585;
+    --light: #f8f9fa;
+    --dark: #212529;
+    --gray: #6c757d;
+    --border: #dee2e6;
+  }
+
+  * {
+    @apply m-0 p-0 box-border;
+  }
+
+  body {
+    @apply font-sans bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 min-h-screen;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  }
+}
+
+@layer components {
+  /* Botones personalizados */
+  .btn-primary {
+    @apply bg-[#4361ee] hover:bg-[#3a56d4] text-white font-medium py-2 px-4 rounded-lg 
+           transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-[#7209b7] hover:bg-[#5f0b9e] text-white font-medium py-2 px-4 rounded-lg 
+           transition-colors duration-300;
+  }
+
+  .btn-danger {
+    @apply bg-[#f72585] hover:bg-[#e1156d] text-white font-medium py-2 px-4 rounded-lg 
+           transition-colors duration-300;
+  }
+
+  .btn-outline {
+    @apply border border-[#4361ee] text-[#4361ee] hover:bg-[#4361ee] hover:text-white 
+           font-medium py-2 px-4 rounded-lg transition-colors duration-300;
+  }
+
+  /* Cards y contenedores */
+  .card {
+    @apply bg-white rounded-xl shadow-lg p-6;
+  }
+
+  .auth-card {
+    @apply card max-w-md w-full mx-auto;
+  }
+
+  .task-card {
+    @apply card hover:shadow-xl transition-shadow duration-300 border-l-4 border-[#4361ee];
+  }
+
+  .task-card.completed {
+    @apply border-l-green-500 opacity-80;
+  }
+
+  /* Formularios */
+  .form-group {
+    @apply mb-4;
+  }
+
+  .form-label {
+    @apply block text-gray-700 font-medium mb-2;
+  }
+
+  .form-input {
+    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none 
+           focus:ring-2 focus:ring-[#4361ee] focus:border-transparent transition-colors;
+  }
+
+  .form-textarea {
+    @apply form-input resize-y min-h-[100px];
+  }
+
+  /* Estados y utilidades */
+  .empty-state {
+    @apply text-center py-12 text-gray-500;
+  }
+
+  .loading-state {
+    @apply flex justify-center items-center min-h-[200px];
+  }
+
+  .error-message {
+    @apply bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded mb-4;
+  }
+
+  .success-message {
+    @apply bg-green-50 border-l-4 border-green-500 text-green-700 p-4 rounded mb-4;
+  }
+
+  /* Navbar */
+  .navbar-container {
+    @apply bg-white shadow-md;
+  }
+
+  .navbar-content {
+    @apply container mx-auto px-4 py-3 flex justify-between items-center;
+  }
+
+  /* Filtros */
+  .filter-btn {
+    @apply px-4 py-2 rounded-lg transition-all duration-300;
+  }
+
+  .filter-btn.active {
+    @apply bg-[#4361ee] text-white shadow-md;
+  }
+
+  .filter-btn:not(.active) {
+    @apply bg-gray-100 text-gray-700 hover:bg-gray-200;
+  }
+
+  /* Task item */
+  .task-checkbox {
+    @apply w-5 h-5 rounded border-2 border-gray-300 checked:bg-[#4361ee] 
+           checked:border-[#4361ee] focus:ring-[#4361ee] cursor-pointer;
+  }
+
+  .task-title {
+    @apply text-lg font-semibold text-gray-800;
+  }
+
+  .task-title.completed {
+    @apply line-through text-gray-500;
+  }
+
+  .task-description {
+    @apply text-gray-600 mt-1;
+  }
+
+  .task-date {
+    @apply text-sm text-gray-400 mt-2;
+  }
+
+  /* Stats */
+  .stats-card {
+    @apply bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 shadow-sm;
+  }
+
+  .stats-item {
+    @apply text-center;
+  }
+
+  .stats-value {
+    @apply text-2xl font-bold text-gray-800;
+  }
+
+  .stats-label {
+    @apply text-sm text-gray-600 mt-1;
+  }
+}
+
+/* Animaciones personalizadas */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.4s ease-out;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 rounded;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-b from-[#4361ee] to-[#7209b7] rounded;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply from-[#3a56d4] to-[#5f0b9e];
+}
+
+/* Selección de texto */
+::selection {
+  @apply bg-[#4361ee]/20 text-gray-900;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mobile-stack {
+    @apply flex-col space-y-4;
+  }
+  
+  .mobile-center {
+    @apply justify-center text-center;
+  }
+}
