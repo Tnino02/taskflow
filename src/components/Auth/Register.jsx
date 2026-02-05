@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import { 
-  AppRegistration, 
-  Email, 
-  Lock, 
-  Person,
-  CheckCircle 
-} from '@mui/icons-material';
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -32,7 +25,6 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Validaciones
     if (formData.password !== formData.confirmPassword) {
       return setError('Las contraseñas no coinciden');
     }
@@ -56,110 +48,112 @@ function Register() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
-      <div className="auth-card animate-fadeIn w-full max-w-md">
+      <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md animate-fadeIn">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg">
-            <AppRegistration className="w-10 h-10 text-white" />
+            <span className="text-2xl text-white">👤</span>
           </div>
           <h2 className="text-3xl font-bold text-gray-800">Crear Cuenta</h2>
-          <p className="text-gray-600 mt-2">Únete a TaskFlow y organiza tus tareas</p>
+          <p className="text-gray-600 mt-2">Comienza a organizar tus tareas hoy</p>
         </div>
 
-        {/* Mensaje de error */}
+        {/* Error Message */}
         {error && (
           <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 rounded-r">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                </svg>
-              </div>
-              <div className="ml-3">
-                <p className="text-sm text-red-700">{error}</p>
-              </div>
-            </div>
+            <p className="text-red-700 flex items-center gap-2">
+              <span className="text-xl">⚠️</span>
+              {error}
+            </p>
           </div>
         )}
 
-        {/* Formulario */}
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Nombre */}
-          <div className="form-group">
-            <label className="form-label flex items-center gap-2">
-              <Person className="w-5 h-5 text-blue-500" />
-              Nombre completo
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-5">
+          {/* Name */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              <span className="flex items-center gap-2">
+                <span className="text-blue-500">👤</span>
+                Nombre completo
+              </span>
             </label>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="form-input"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
               placeholder="Tu nombre"
               required
             />
           </div>
 
           {/* Email */}
-          <div className="form-group">
-            <label className="form-label flex items-center gap-2">
-              <Email className="w-5 h-5 text-blue-500" />
-              Email
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              <span className="flex items-center gap-2">
+                <span className="text-blue-500">📧</span>
+                Email
+              </span>
             </label>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="form-input"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
               placeholder="tu@email.com"
               required
             />
           </div>
 
-          {/* Contraseña */}
-          <div className="form-group">
-            <label className="form-label flex items-center gap-2">
-              <Lock className="w-5 h-5 text-blue-500" />
-              Contraseña
+          {/* Password */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              <span className="flex items-center gap-2">
+                <span className="text-blue-500">🔒</span>
+                Contraseña
+              </span>
             </label>
             <input
               type="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="form-input"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
               placeholder="••••••••"
               required
             />
-            <p className="mt-1 text-xs text-gray-500">
+            <p className="mt-1 text-xs text-gray-500 ml-7">
               Mínimo 6 caracteres
             </p>
           </div>
 
-          {/* Confirmar Contraseña */}
-          <div className="form-group">
-            <label className="form-label flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-blue-500" />
-              Confirmar Contraseña
+          {/* Confirm Password */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              <span className="flex items-center gap-2">
+                <span className="text-blue-500">✓</span>
+                Confirmar Contraseña
+              </span>
             </label>
             <input
               type="password"
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
-              className="form-input"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
               placeholder="••••••••"
               required
             />
           </div>
 
-          {/* Botón de registro */}
+          {/* Submit Button */}
           <button
             type="submit"
             disabled={loading}
-            className="btn-primary w-full flex items-center justify-center gap-2 py-3"
+            className="w-full py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? (
               <>
@@ -168,14 +162,14 @@ function Register() {
               </>
             ) : (
               <>
-                <AppRegistration className="w-5 h-5" />
+                <span className="text-lg">📝</span>
                 Registrarse
               </>
             )}
           </button>
         </form>
 
-        {/* Enlace para login */}
+        {/* Login Link */}
         <div className="mt-8 pt-6 border-t border-gray-200 text-center">
           <p className="text-gray-600">
             ¿Ya tienes cuenta?
@@ -188,13 +182,11 @@ function Register() {
           </p>
         </div>
 
-        {/* Términos y condiciones */}
-        <div className="mt-6 text-center">
-          <p className="text-xs text-gray-500">
-            Al registrarte, aceptas nuestros
-            <a href="#" className="text-blue-500 hover:underline ml-1">Términos</a>
-            <span className="mx-1">y</span>
-            <a href="#" className="text-blue-500 hover:underline">Política de Privacidad</a>
+        {/* Security Note - Versión simplificada sin enlaces problemáticos */}
+        <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+          <p className="text-sm text-blue-700 flex items-start gap-2">
+            <span className="text-blue-500 mt-0.5">🔐</span>
+            <span>Tu información está segura con nosotros. Usamos encriptación para proteger tus datos.</span>
           </p>
         </div>
       </div>
